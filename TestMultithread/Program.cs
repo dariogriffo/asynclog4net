@@ -14,8 +14,8 @@ namespace TestMultithread
         static void Main(string[] args)
         {
 
-            log4net.Config.XmlConfigurator.Configure();
-            ILog log = log4net.LogManager.GetLogger("log4net");
+            var q = log4net.Config.XmlConfigurator.Configure();
+            ILog log = log4net.LogManager.GetLogger(typeof(Program));
             log.Info("--------------------- Start ------------------------------");
             var taskList = new List<Task>();
             var rnd = new Random(Environment.TickCount);
@@ -38,7 +38,7 @@ namespace TestMultithread
             log.Info("--------------------- All tasks created ****-----------------------------");
             while (taskList.Any(t => !t.IsCompleted))
             {
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
             log.Info("--------------------- All queues processed ------------------------------");            
 

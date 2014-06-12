@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncForwardingAppender.cs" />
+    <Compile Include="Guard.cs" />
     <Compile Include="LoggingEventHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

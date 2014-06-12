@@ -1,23 +1,44 @@
 ﻿using System;
-using System.Collections.Concurrent;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Schedulers;
+using log4net;
 using log4net.Appender;
 using log4net.Core;
 using log4net.Util;
 
 namespace AsyncLog4net
 {
+
+    public static class ArrayEx
+    {
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> theEnumerable, Action<T> func)
+        {
+            if (theEnumerable == null) throw new ArgumentNullException("theEnumerable");
+            if (func == null) throw new ArgumentNullException("func");
+            foreach (var item in theEnumerable)
+            {
+                func(item);
+            }
+            return theEnumerable;
+        }
+    }
+
+
     public class AsyncForwardingAppender : ForwardingAppender
     {
         private FixFlags _fixFlags = FixFlags.Partial;
         private static readonly Type ThisType = typeof(AsyncForwardingAppender);
         private bool _shutDown;
         private readonly LoggingEventHelper _loggingEventHelper = new LoggingEventHelper("AsyncForwardingAppender", FixFlags.Partial);
-        readonly ConcurrentQueue<LoggingEvent> _queue = new ConcurrentQueue<LoggingEvent>();
+        readonly Queue<LoggingEvent> _queue = new Queue<LoggingEvent>();
         readonly AutoResetEvent _event = new AutoResetEvent(false);
+        private readonly Mutex _mutex = new Mutex();
+        private bool _done;
+        public bool WaitForAll { get; set; }
 
         public AsyncForwardingAppender()
         {
@@ -29,13 +50,25 @@ namespace AsyncLog4net
         {
             while (!_shutDown)
             {
-                while (!_queue.IsEmpty)
+                if (_queue.Any())
                 {
-                    LoggingEvent e;
-                    if (_queue.TryDequeue(out e)) ForwardLoggingEvent(e);
+                    var list = new LoggingEvent[_queue.Count()];
+                    using (_mutex.Lock())
+                    {
+                        while (_queue.Any())
+                        {
+                            _queue.CopyTo(list, 0);
+                            _queue.Clear();
+                        }
+                    }
+                    if (!_shutDown || WaitForAll)
+                    {
+                        list.ForEach(ForwardLoggingEvent);
+                    }
                 }
-                _event.WaitOne(100);
+                _event.WaitOne(50);
             }
+            _done = true;
         }
 
         private void SetFixFlags(FixFlags newFixFlags)
@@ -64,9 +97,9 @@ namespace AsyncLog4net
         {
             _shutDown = true;
             _event.Set();
-            while (!_queue.IsEmpty)
+            while (!_done)
             {
-                Thread.Sleep(10);
+                Thread.Sleep(20);
             }
             base.OnClose();
         }
@@ -122,9 +155,12 @@ namespace AsyncLog4net
         protected override void Append(LoggingEvent[] loggingEvents)
         {
             if (_shutDown) return;
-            foreach (var loggingEvent in loggingEvents.Where(e => e != null))
+            using (_mutex.Lock())
             {
-                AddEventToQueue(loggingEvent);
+                foreach (var loggingEvent in loggingEvents.Where(e => e != null))
+                {
+                    AddEventToQueue(loggingEvent);
+                }
             }
             _event.Set();
         }
