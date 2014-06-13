@@ -5,9 +5,9 @@
     <version>1.0.0</version>
     <authors>dario.griffo</authors>
     <owners>dario.griffo</owners>
-    <licenseUrl>www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
     <projectUrl>https://github.com/dariogriffo/asynclog4net</projectUrl>
-    <iconUrl></iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/dariogriffo/asynclog4net/develop/assets/icon.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This is a simple log4net async appender to maximize throughput of the application logger</description>
     <releaseNotes>Initial package</releaseNotes>
