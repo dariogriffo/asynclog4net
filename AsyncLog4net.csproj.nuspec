@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AsyncLog4net</id>
+    <version>1.0.0</version>
+    <authors>dario.griffo</authors>
+    <owners>dario.griffo</owners>
+    <licenseUrl>www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <projectUrl>https://github.com/dariogriffo/asynclog4net</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is a simple log4net async appender to maximize throughput of the application logger</description>
+    <releaseNotes>Initial package</releaseNotes>
+    <copyright>Copyright 2014 @ Dario Griffo</copyright>
+    <tags>log4net asynchronous</tags>
+    <dependencies>
+      <dependency id="log4net" version="2.0.3" />
+	  <dependency id="ParallelExtensionsExtras" version="1.2.0.0" />
+    </dependencies>
+  </metadata>
+</package>
