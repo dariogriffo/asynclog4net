@@ -33,12 +33,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "Net451\src\AsyncLog4net.csproj", "{61557696-3C78-4F99-83AE-6CFE19D91DDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net.Tests", "Net451\tests\AsyncLog4net.Tests.csproj", "{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5} = {A2781AF4-2F38-45B9-B6ED-49576BA1E7E5}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net452", "Net452", "{BDCB7798-BBDA-4A37-BD8B-6EE38F501998}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "Net452\src\AsyncLog4net.csproj", "{C6D1E315-4BD9-46A5-B994-439C9C860E0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net.Tests", "Net452\tests\AsyncLog4net.Tests.csproj", "{A7371BFA-D863-4388-81A5-E034B6C52C7B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202} = {AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
