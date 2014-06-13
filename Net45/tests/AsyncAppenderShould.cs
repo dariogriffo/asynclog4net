@@ -6,18 +6,18 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using log4net;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace AsyncLog4net.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class AsyncAppenderShould
     {
         private ILog _syncLogger;
         private ILog _asyncLogger;
         private int _iterations;
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             var iterations = ConfigurationManager.AppSettings["iterations"];
@@ -31,7 +31,7 @@ namespace AsyncLog4net.Tests
             _asyncLogger = LogManager.GetLogger("asyncLogger");
         }
 
-        [TestMethod]
+        [Test]
         public void EndLoggingBeforeSyncAppender()
         {
             var now = Environment.TickCount;
