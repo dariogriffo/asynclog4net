@@ -1,11 +1,44 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "AsyncLog4net\AsyncLog4net.csproj", "{0206BE90-9FBA-4CA9-8E55-E93AA9C9760B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F7299582-ABE1-4637-901C-A2964E1EA385}"
+	ProjectSection(SolutionItems) = preProject
+		src\AsyncForwardingAppender.cs = src\AsyncForwardingAppender.cs
+		src\Guard.cs = src\Guard.cs
+		src\LoggingEventHelper.cs = src\LoggingEventHelper.cs
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMultithread", "TestMultithread\TestMultithread.csproj", "{AB020471-1C5C-449A-B9A4-5E104055BA97}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net40", "Net40", "{14EE6226-7094-4472-A890-A9E24906A1F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net45", "Net45", "{B15E0867-412E-4B57-AFAC-952E73957D5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net451", "Net451", "{6D7F0329-3FA4-4375-8D22-B7B61AA14656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "Net40\src\AsyncLog4net.csproj", "{0206BE90-9FBA-4CA9-8E55-E93AA9C9760B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net.Tests", "Net40\tests\AsyncLog4net.Tests.csproj", "{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{80DFF19F-E071-491D-A947-37F442F8010F}"
+	ProjectSection(SolutionItems) = preProject
+		tests\App.config = tests\App.config
+		tests\AsyncAppenderShould.cs = tests\AsyncAppenderShould.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "Net45\src\AsyncLog4net.csproj", "{43606E1A-D1AD-4EAB-ACF7-A2A517ED8BF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net.Tests", "Net45\tests\AsyncLog4net.Tests.csproj", "{599C702C-9228-418F-A76A-A887D00B2E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "Net451\src\AsyncLog4net.csproj", "{61557696-3C78-4F99-83AE-6CFE19D91DDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net.Tests", "Net451\tests\AsyncLog4net.Tests.csproj", "{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net452", "Net452", "{BDCB7798-BBDA-4A37-BD8B-6EE38F501998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net", "Net452\src\AsyncLog4net.csproj", "{C6D1E315-4BD9-46A5-B994-439C9C860E0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLog4net.Tests", "Net452\tests\AsyncLog4net.Tests.csproj", "{A7371BFA-D863-4388-81A5-E034B6C52C7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +50,46 @@ Global
 		{0206BE90-9FBA-4CA9-8E55-E93AA9C9760B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0206BE90-9FBA-4CA9-8E55-E93AA9C9760B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0206BE90-9FBA-4CA9-8E55-E93AA9C9760B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB020471-1C5C-449A-B9A4-5E104055BA97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB020471-1C5C-449A-B9A4-5E104055BA97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB020471-1C5C-449A-B9A4-5E104055BA97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB020471-1C5C-449A-B9A4-5E104055BA97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43606E1A-D1AD-4EAB-ACF7-A2A517ED8BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43606E1A-D1AD-4EAB-ACF7-A2A517ED8BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43606E1A-D1AD-4EAB-ACF7-A2A517ED8BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43606E1A-D1AD-4EAB-ACF7-A2A517ED8BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599C702C-9228-418F-A76A-A887D00B2E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599C702C-9228-418F-A76A-A887D00B2E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599C702C-9228-418F-A76A-A887D00B2E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599C702C-9228-418F-A76A-A887D00B2E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61557696-3C78-4F99-83AE-6CFE19D91DDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61557696-3C78-4F99-83AE-6CFE19D91DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61557696-3C78-4F99-83AE-6CFE19D91DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61557696-3C78-4F99-83AE-6CFE19D91DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D1E315-4BD9-46A5-B994-439C9C860E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D1E315-4BD9-46A5-B994-439C9C860E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D1E315-4BD9-46A5-B994-439C9C860E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D1E315-4BD9-46A5-B994-439C9C860E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7371BFA-D863-4388-81A5-E034B6C52C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7371BFA-D863-4388-81A5-E034B6C52C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7371BFA-D863-4388-81A5-E034B6C52C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7371BFA-D863-4388-81A5-E034B6C52C7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0206BE90-9FBA-4CA9-8E55-E93AA9C9760B} = {14EE6226-7094-4472-A890-A9E24906A1F5}
+		{A2781AF4-2F38-45B9-B6ED-49576BA1E7E5} = {14EE6226-7094-4472-A890-A9E24906A1F5}
+		{43606E1A-D1AD-4EAB-ACF7-A2A517ED8BF1} = {B15E0867-412E-4B57-AFAC-952E73957D5F}
+		{599C702C-9228-418F-A76A-A887D00B2E4E} = {B15E0867-412E-4B57-AFAC-952E73957D5F}
+		{61557696-3C78-4F99-83AE-6CFE19D91DDE} = {6D7F0329-3FA4-4375-8D22-B7B61AA14656}
+		{AD2AF1DE-4208-4BD3-9D59-9C12F1D3B202} = {6D7F0329-3FA4-4375-8D22-B7B61AA14656}
+		{C6D1E315-4BD9-46A5-B994-439C9C860E0D} = {BDCB7798-BBDA-4A37-BD8B-6EE38F501998}
+		{A7371BFA-D863-4388-81A5-E034B6C52C7B} = {BDCB7798-BBDA-4A37-BD8B-6EE38F501998}
 	EndGlobalSection
 EndGlobal
