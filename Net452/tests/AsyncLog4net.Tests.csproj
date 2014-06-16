@@ -109,7 +109,8 @@
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir).nuget\Nuget.exe" SetApiKey fe8c1b56-a1a8-4d2f-9848-9f2edc17abc7
 "$(SolutionDir).nuget\Nuget.exe" Pack "$(SolutionDir)assets\AsyncLog4net.nuspec"
-move AsyncLog4net.1.0.0.nupkg  "$(SolutionDir)assets\"
+move AsyncLog4net.1.0.1.nupkg  "$(SolutionDir)assets\"
+NuGet Push "$(SolutionDir)assets\AsyncLog4net.1.0.1.nupkg"
 
 </PostBuildEvent>
   </PropertyGroup>

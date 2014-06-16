@@ -29,7 +29,31 @@ Then add your asynchronous appender as follows
     	<appender-ref ref="MyAdoNetAppender_Access"/>
     </appender>   
 
-You can use the appSettings key to see how log4net configures it in case you need it
+And declare it as your root logger 
+    <root>
+        <level value="ALL" />
+        <appender-ref ref="asyncForwarder" />          
+    </root>
+
+and get it
+
+    log4net.Config.XmlConfigurator.Configure();
+    var asyncLogger = LogManager.GetLogger(typeof(Logger));
+	
+Or name it 
+
+    <logger name="asyncLogger">
+        <level value="ALL" />
+        <appender-ref ref="asyncForwarder" />
+    </logger>
+
+and call it from the app	
+
+log4net.Config.XmlConfigurator.Configure();
+var asyncLogger = LogManager.GetLogger("asyncLogger");	
+	
+
+Remember you can use the appSettings key to see how log4net configures it in case you need it
 
     <add key="log4net.Internal.Debug" value="true"/>
 
