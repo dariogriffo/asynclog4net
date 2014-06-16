@@ -49,8 +49,8 @@ Or name it
 
 and call it from the app	
 
-log4net.Config.XmlConfigurator.Configure();
-var asyncLogger = LogManager.GetLogger("asyncLogger");	
+    log4net.Config.XmlConfigurator.Configure();
+    var asyncLogger = LogManager.GetLogger("asyncLogger");	
 	
 
 Remember you can use the appSettings key to see how log4net configures it in case you need it
