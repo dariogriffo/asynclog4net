@@ -3,10 +3,12 @@
 ### Description
 This is a simple log4net async appender to maximize throughput of the application logger
 
+You can download the Nuget package from [here](https://www.nuget.org/packages/AsyncLog4net/)
+
 ### Usage
 
-Using the names from 
-[a link](http://logging.apache.org/log4net/release/config-examples.html)
+Using the names from the
+[log4net example page](http://logging.apache.org/log4net/release/config-examples.html)
 
 Add for example an AdoNetAppender and an AdoNetAppender_Access in your app.config or web.config as usual and also add a new one
 
