@@ -32,7 +32,7 @@ namespace AsyncLog4net
     {
         private FixFlags _fixFlags = FixFlags.Partial;
         private static readonly Type ThisType = typeof(AsyncForwardingAppender);
-        private bool _shutDown;
+        private volatile bool _shutDown;
         private readonly LoggingEventHelper _loggingEventHelper = new LoggingEventHelper("AsyncForwardingAppender", FixFlags.Partial);
         readonly Queue<LoggingEvent> _queue = new Queue<LoggingEvent>();
         readonly AutoResetEvent _event = new AutoResetEvent(false);
@@ -50,23 +50,20 @@ namespace AsyncLog4net
         {
             while (!_shutDown)
             {
-                if (_queue.Any())
+                var list = new List<LoggingEvent>();
+                using (_mutex.Lock())
                 {
-                    var list = new LoggingEvent[_queue.Count()];
-                    using (_mutex.Lock())
+                    if (_queue.Any())
                     {
-                        while (_queue.Any())
-                        {
-                            _queue.CopyTo(list, 0);
-                            _queue.Clear();
-                        }
-                    }
-                    if (!_shutDown || WaitForAll)
-                    {
-                        list.ForEach(ForwardLoggingEvent);
+                        list.AddRange(_queue);
+                        _queue.Clear();
                     }
                 }
-                _event.WaitOne(50);
+                if (!_shutDown || WaitForAll)
+                {
+                    list.ForEach(ForwardLoggingEvent);
+                }
+                _event.WaitOne(20);
             }
             _done = true;
         }
@@ -148,7 +145,10 @@ namespace AsyncLog4net
         protected override void Append(LoggingEvent loggingEvent)
         {
             if (_shutDown || loggingEvent == null) return;
-            AddEventToQueue(loggingEvent);
+            using (_mutex.Lock())
+            {
+                AddEventToQueue(loggingEvent);
+            }
             _event.Set();
         }
 

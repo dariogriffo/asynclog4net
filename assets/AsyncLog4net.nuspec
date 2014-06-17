@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>AsyncLog4net</id>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <authors>dario.griffo</authors>
         <owners>dario.griffo</owners>
         <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
@@ -10,7 +10,7 @@
         <iconUrl>https://raw.githubusercontent.com/dariogriffo/asynclog4net/develop/assets/icon.jpg</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>This is a simple log4net async appender to maximize throughput of the application logger</description>
-        <releaseNotes>Adding framework 4.5.2 to the package. Check the project page on how to use it</releaseNotes>
+        <releaseNotes>Fixed bug on adding single event. Improved general conditions check on main loop</releaseNotes>
         <copyright>Copyright 2014 @ Dario Griffo</copyright>
         <tags>log4net asynchronous</tags>
         <dependencies>
