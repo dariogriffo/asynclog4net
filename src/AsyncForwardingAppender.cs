@@ -145,24 +145,28 @@ namespace AsyncLog4net
         protected override void Append(LoggingEvent loggingEvent)
         {
             if (_shutDown || loggingEvent == null) return;
-            using (_mutex.Lock())
+            Task.Factory.StartNew(() =>
             {
-                AddEventToQueue(loggingEvent);
-            }
-            _event.Set();
+                using (_mutex.Lock())
+                {
+                    AddEventToQueue(loggingEvent);
+                }
+                _event.Set();
+            });
         }
 
         protected override void Append(LoggingEvent[] loggingEvents)
         {
             if (_shutDown) return;
-            using (_mutex.Lock())
+            var eventsList = loggingEvents.Where(e => e != null).ToList();
+            Task.Factory.StartNew(() =>
             {
-                foreach (var loggingEvent in loggingEvents.Where(e => e != null))
+                using (_mutex.Lock())
                 {
-                    AddEventToQueue(loggingEvent);
+                    eventsList.ForEach(AddEventToQueue);
                 }
-            }
-            _event.Set();
+                _event.Set();
+            });
         }
     }
 }
